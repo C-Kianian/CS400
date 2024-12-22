@@ -1,0 +1,33 @@
+#!/bin/env bash
+# ensure this script is is only run once, abort on subsequent attempts
+if git branch -vv | grep backend; then
+    echo "Aborting because you already have a backend branch, making it appear that this script has already been run."
+    exit 1
+fi
+# create backend branch from P209
+git -c advice.detachedHead=false checkout main~1
+git checkout -b backend
+git remote add backend-remote https://$(cat ~/.gitlab.access)@git.doit.wisc.edu/cdis/cs/courses/cs400/202409/students/KIANIAN/P209.RoleCode.git
+git pull backend-remote main -X theirs --allow-unrelated-histories --no-edit
+git branch --set-upstream-to backend-remote/main
+# create frontend branch from P209
+git -c advice.detachedHead=false checkout main~1
+git checkout -b frontend
+git remote add frontend-remote https://$(cat ~/.gitlab.access)@git.doit.wisc.edu/cdis/cs/courses/cs400/202409/students/PBANSAL24/P209.RoleCode.git
+git pull frontend-remote main -X theirs --allow-unrelated-histories --no-edit
+git branch --set-upstream-to frontend-remote/main
+# create dijkstra branch from P210
+git -c advice.detachedHead=false checkout main~1
+git checkout -b dijkstra
+git remote add dijkstra-remote https://$(cat ~/.gitlab.access)@git.doit.wisc.edu/cdis/cs/courses/cs400/202409/students/KIANIAN/P210.ShortestPath.git
+git pull dijkstra-remote main -X theirs --allow-unrelated-histories --no-edit
+git branch --set-upstream-to dijkstra-remote/main
+# create hashtable branch from P212
+git -c advice.detachedHead=false checkout main~1
+git checkout -b hashtable
+git remote add hashtable-remote https://$(cat ~/.gitlab.access)@git.doit.wisc.edu/cdis/cs/courses/cs400/202409/students/KIANIAN/P212.Hashtable.git
+git pull hashtable-remote main -X theirs --allow-unrelated-histories --no-edit
+git branch --set-upstream-to hashtable-remote/main
+# return to main, and push to same destination remote branches are pulled from
+git checkout main
+git config push.default upstream

@@ -1,0 +1,33 @@
+<html><head><title>CS400 P2 - Campus Navigator WebApp</title><script>
+      // configure button onclick handlers after window and body are loaded
+      window.onload=()=>{
+	  // start with the shortest path button in the firstPrompt div
+	  let selector = "#firstPrompt input[type=button],#firstPrompt button";
+	  let button = document.querySelector(selector);
+	  button.onclick=event=>{
+	      let start=encodeURI(document.querySelector("#start").value);
+	      let end=encodeURI(document.querySelector("#end").value);
+	      window.location=window.location.pathname+"?start="+start+"&end="+end;
+	  };
+	  // then do the same for the other button in the secondPrompt div
+	  selector = "#secondPrompt input[type=button],#secondPrompt button";
+	  button = document.querySelector(selector);
+	  button.onclick=event=>{
+	      let from=encodeURI(document.querySelector("#from").value);
+				if(document.querySelector("#time") == null)
+						window.location=window.location.pathname+"?from="+from;
+				else { // add second argument when needed and available
+						let t=encodeURI(document.querySelector("#time").value);
+						window.location=window.location.pathname+"?from="+from+"&time="+t;
+				}
+	  };	  
+      };
+  </script></head><body>
+    <h1>CS400 P2 - Campus Navigator WebApp</h1>
+    <hr/>
+    <!-- RESPONSE GOES HERE -->
+    <hr/>
+    <!-- PROMPTS GO HERE -->
+    
+    
+</body></html>
