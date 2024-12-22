@@ -1,0 +1,27 @@
+#!/bin/env bash
+# ensure this script is is only run once, abort on subsequent attempts
+if git branch -vv | grep backend; then
+    echo "Aborting because you already have a backend branch, making it appear that this script has already been run."
+    exit 1
+fi
+# create backend branch from P103
+git -c advice.detachedHead=false checkout main~1
+git checkout -b backend
+git remote add backend-remote https://$(cat ~/.gitlab.access)@git.doit.wisc.edu/cdis/cs/courses/cs400/202409/students/kkemei/P103.RoleCode.git
+git pull backend-remote main -X theirs --allow-unrelated-histories --no-edit
+git branch --set-upstream-to backend-remote/main
+# create frontend branch from P103
+git -c advice.detachedHead=false checkout main~1
+git checkout -b frontend
+git remote add frontend-remote https://$(cat ~/.gitlab.access)@git.doit.wisc.edu/cdis/cs/courses/cs400/202409/students/KIANIAN/P103.RoleCode.git
+git pull frontend-remote main -X theirs --allow-unrelated-histories --no-edit
+git branch --set-upstream-to frontend-remote/main
+# create tree branch from P106
+git -c advice.detachedHead=false checkout main~1
+git checkout -b tree
+git remote add tree-remote https://$(cat ~/.gitlab.access)@git.doit.wisc.edu/cdis/cs/courses/cs400/202409/students/KIANIAN/P106.Iterator.git
+git pull tree-remote main -X theirs --allow-unrelated-histories --no-edit
+git branch --set-upstream-to tree-remote/main
+# return to main, and push to same destination remote branches are pulled from
+git checkout main
+git config push.default upstream
