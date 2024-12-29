@@ -1,2 +1,2 @@
 # CS400
-Weekly work for CS400 @UW-Madison, most weeks will have a project (P#.name) and an activity (A#.name). Some weeks will be missing or lacking one of these (projects/acitivties) due to exams/breaks. Also, some were removed since viewing the files would not accuratly display what was being learned. 
+Weekly work for CS400 @UW-Madison, most weeks will have a project (P#.name) and an activity (A#.name). Some weeks will be missing or lacking one of these (projects/acitivties) due to exams/breaks. Also, some were removed since viewing the files would not accuratly display what was being learned. Notice that some weekly projects get updated due to bugs being noticed or different requirments when integrating into the main projects (P1/P2)
